@@ -12,3 +12,6 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 import "bootstrap";
+
+require("trix")
+require("@rails/actiontext")
