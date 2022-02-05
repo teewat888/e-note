@@ -1,0 +1,8 @@
+<%= form_with model: @note, class: "form-partial" , local: true do |f| %>
+
+    <h5 >edit: <%= note.title %></h5>
+    <div class="form-group"><%= f.text_field :title, class: "form-control", placeholder: "Title" %></div>
+    <div class="form-group"><%= f.rich_text_area :content, rows: 100 , class: "form-control", placeholder: "Content" %></div>
+    <div class="form-group"> <%= f.submit class: "btn btn-outline-dark btn-sm" %></div>
+    
+<% end %>
