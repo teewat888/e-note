@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ENote</title>
+    <title>E-Note</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/nav" %>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8">
+             <%= yield %>
+        </div>
+        <div class="col-md-4">
+            <%= render "layouts/login"  %>
+        </div>
+    </div>
+</div>
+   
   </body>
 </html>
