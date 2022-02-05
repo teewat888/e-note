@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  bump        :integer
 #  content     :text
+#  published   :boolean          default(TRUE)
 #  require_ack :boolean
 #  title       :string
 #  created_at  :datetime         not null

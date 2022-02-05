@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  bump        :integer
 #  content     :text
+#  published   :boolean          default(TRUE)
 #  require_ack :boolean
 #  title       :string
 #  created_at  :datetime         not null
@@ -22,4 +23,7 @@
 class Note < ApplicationRecord
   has_rich_text :content
   belongs_to :user
+
+  scope :published, -> { where(:published => true) }
+
 end
