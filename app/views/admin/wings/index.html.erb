@@ -1,0 +1,9 @@
+<% @wings.each do |wing| %>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0"><%= wing.name %> <%= link_to "Edit", edit_wing_path(wing) %></h5>
+    </div>
+</div>
+   
+<% end %>

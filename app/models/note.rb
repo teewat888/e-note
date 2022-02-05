@@ -23,6 +23,8 @@
 class Note < ApplicationRecord
   has_rich_text :content
   belongs_to :user
+  has_many :wing_notes
+  has_many :wings, through: :wing_notes
 
   scope :published, -> { where(:published => true) }
 

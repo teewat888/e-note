@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_211900) do
+ActiveRecord::Schema.define(version: 2022_02_05_214350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,21 @@ ActiveRecord::Schema.define(version: 2022_02_05_211900) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "wing_notes", force: :cascade do |t|
+    t.bigint "wings_id"
+    t.bigint "notes_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notes_id"], name: "index_wing_notes_on_notes_id"
+    t.index ["wings_id"], name: "index_wing_notes_on_wings_id"
+  end
+
+  create_table "wings", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
