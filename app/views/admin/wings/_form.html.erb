@@ -1,6 +1,8 @@
-<%= form_with model: wing, class: "form-partial" , local: true do |f| %>
+<%= form_with model: wing, url: admin_wing_path ,method: :put, class: "form-partial" , local: true do |f| %>
    
     <div class="form-group"><%= f.text_field :name, class: "form-control", placeholder: "Wing name" %></div>    
-    <div class="form-group"> <%= f.submit class: "btn btn-outline-dark btn-sm" %></div>
+    <div class="form-group"><%= f.text_field :display_order, class: "form-control" %></div> 
+    <div class="form-group"><%= f.submit class: "btn btn-outline-dark btn-sm" %></div>
     
 <% end %>
+<%= link_to "Cancel", admin_wings_path %>

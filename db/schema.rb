@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_214350) do
+ActiveRecord::Schema.define(version: 2022_02_06_115124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 2022_02_05_214350) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "note_wings", force: :cascade do |t|
+    t.bigint "note_id"
+    t.bigint "wing_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_note_wings_on_note_id"
+    t.index ["wing_id"], name: "index_note_wings_on_wing_id"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.boolean "require_ack"
@@ -73,22 +82,16 @@ ActiveRecord::Schema.define(version: 2022_02_05_214350) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "wing_notes", force: :cascade do |t|
-    t.bigint "wings_id"
-    t.bigint "notes_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["notes_id"], name: "index_wing_notes_on_notes_id"
-    t.index ["wings_id"], name: "index_wing_notes_on_wings_id"
-  end
-
   create_table "wings", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "display_order"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "note_wings", "notes"
+  add_foreign_key "note_wings", "wings"
   add_foreign_key "notes", "users"
 end

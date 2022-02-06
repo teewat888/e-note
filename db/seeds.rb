@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#delete all data in wings
+Wing.delete_all
+#reset primary key to start from 1
+ActiveRecord::Base.connection.reset_pk_sequence!('wings')
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+wings = ['Main', 'Willows', 'Oaks', 'Juniper', 'Acacia', 'Myrtle']
+wings.each_with_index do |wing, index|
+    Wing.create(name: wing, display_order: index+1)
+end
+
+User.create(username: 'admin')
