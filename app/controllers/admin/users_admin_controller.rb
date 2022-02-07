@@ -13,8 +13,7 @@ class Admin::UsersAdminController < ApplicationController
         user = User.new(user_params)
         if user.valid?
             user.save
-            flash[:success] = "New user has been created." 
-            redirect_to admin_users_admin_index_path
+            redirect_to admin_users_admin_index_path, notice: "New user has been created."
         end
     end
 
@@ -24,8 +23,7 @@ class Admin::UsersAdminController < ApplicationController
 
     def update
         if @user.update(user_params)
-            flash[:success] = "User has been updated." 
-            redirect_to admin_users_admin_index_path
+            redirect_to admin_users_admin_index_path, notice: "User has been updated."
         end
     end
 

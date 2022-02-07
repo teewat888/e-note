@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col">
+        <% flash.each do |type, msg| %>
+            <div class="alert alert-<%= type == "notice" ? "info" : "danger" %> alert-dismissible fade show" role="alert">
+                <%= msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% end %>
+    </div>
+</div>
