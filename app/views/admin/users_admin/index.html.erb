@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>Username</th>
-                <th>Email</th>
+                <th>Role</th>
                 <th>Edit</th>
             </tr>
         </thead>
@@ -11,7 +11,7 @@
         <% @users.each do |user| %>
             <tr>
                 <td><%= user.username %></td>
-                <td><%= user.email %></td>
+                <td><%= user.role.name %></td>
                 <td><%= link_to "Edit", edit_admin_users_admin_path(user) %></td>
             </tr>
         <% end %>

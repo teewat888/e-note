@@ -1,5 +1,6 @@
 <section class="login-clean">
     <% if logged_in? %>
+        <p>Hello, <%= current_user.username %></p>
         <p><%= link_to "Logout", logout_path, method: :post %></p>
 
         <p><%= link_to "Create new note", new_note_path %></p>

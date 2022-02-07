@@ -27,3 +27,26 @@ trix-editor#note_content {
 body {
   background-color: rgb(248, 238, 223);
 }
+
+input[id^="note_wing_ids"] {
+  display: none;
+}
+
+input[type="checkbox"] + label {
+  display: inline-block;
+  line-height: 2.2em;
+  padding: 0 0.62em;
+  border: 1px solid #666;
+  border-radius: 0.25em;
+  /*background-image: linear-gradient(to bottom, #fff, #ccc);*/
+  background-color: white;
+  /*box-shadow: inset 0 0 0.1em #fff, 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);*/
+  font-family: arial, sans-serif;
+  font-size: 0.8em;
+  margin-right: 0.5em;
+}
+input[type="checkbox"]:checked + label {
+  color: white;
+  background-color: black;
+  font-style: normal;
+}
