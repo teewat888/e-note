@@ -2,7 +2,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h5 class="mb-0"><%= note.title %> (by <%= note.user.username %>) (<%= display_wing(note) %>)</h5>
+        <h5 class="mb-0"><%= note.title %> (by <%= note.user.username %>) (<%= display_wing(note) %>)  <%= link_to "Edit", edit_note_path(note) %></h5>
     </div>
     <div class="card-body">
         <p class="card-text"><%= note.content %></p>

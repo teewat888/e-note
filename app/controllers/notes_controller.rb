@@ -18,7 +18,7 @@ class NotesController < ApplicationController
         #need to change whne auth
         note.user = User.find(1)
         if note.save
-            redirect_to notes_path
+            redirect_to root_path
         else
             render :new
         end
@@ -32,8 +32,7 @@ class NotesController < ApplicationController
          #need to change whne auth
         @note.user = User.find(1)
         if @note.update(note_params)
-            flash[:success] = "Note has been updated"
-            redirect_to @note
+            redirect_to root_path, notice: "Note has been updated"
         end
     end
 

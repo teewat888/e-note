@@ -21,7 +21,8 @@
 }
 
 trix-editor#note_content {
-  height: 350px;
+  min-height: 350px;
+  overflow-y: auto;
 }
 
 body {
@@ -38,9 +39,7 @@ input[type="checkbox"] + label {
   padding: 0 0.62em;
   border: 1px solid #666;
   border-radius: 0.25em;
-  /*background-image: linear-gradient(to bottom, #fff, #ccc);*/
   background-color: white;
-  /*box-shadow: inset 0 0 0.1em #fff, 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);*/
   font-family: arial, sans-serif;
   font-size: 0.8em;
   margin-right: 0.5em;
