@@ -1,12 +1,19 @@
-<% @notes.each do |note| %>
+<div class="accordion" id="accordionDiv">
+    <% @notes.each do |note| %>
+        <div class="card">
+            <div class="card-header" id="heading<%= note.id %>">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= note.id %>" aria-expanded="true" aria-controls="collapse<%= note.id %>">
+                    <%= note.title %>
+                    </button>
+                </h2>
+            </div>
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0"><%= note.title %> (by <%= note.user.username %>)</h5>
-    </div>
-    <div class="card-body">
-        <p class="card-text"><%= note.content %></p>
-    </div>
+            <div id="collapse<%= note.id %>" class="collapse" aria-labelledby="heading<%= note.id %>" data-parent="#accordionDiv">
+                <div class="card-body">
+                    <%= note.content %></p>
+                </div>
+            </div>
+        </div>
+    <% end %>
 </div>
-   
-<% end %>
