@@ -1,1 +1,6 @@
-<%= @note.title %>
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0"><%= @note.title %></h5>
+    </div>
+    <%= render partial: "layouts/shared/content_card", locals: {note: @note} %>
+</div>

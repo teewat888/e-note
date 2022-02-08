@@ -12,6 +12,7 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 import "bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 require("trix");
 require("@rails/actiontext");

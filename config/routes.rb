@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   resources :users
   resources :notes
 
+  resources :notes do
+    resources :comments
+  end
+
+  resources :comments
+
   namespace :admin do
     resources :wings
     resources :users_admin

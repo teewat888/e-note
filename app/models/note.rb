@@ -25,6 +25,8 @@ class Note < ApplicationRecord
   belongs_to :user
   has_many :note_wings
   has_many :wings, through: :note_wings
+  has_many :comments
+  has_many :users, through: :comments
 
   scope :published, -> { where(:published => true) }
 
