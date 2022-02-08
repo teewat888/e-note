@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-    before_action :set_note, only: [:edit, :show, :update]
+    before_action :set_note, only: [:edit, :show, :update, :destroy]
     before_action :must_log_in, except: [:show, :index]
     before_action :must_same_user, only: [:edit, :update]
     before_action :check_cancel, only: [:create, :update]
@@ -16,13 +16,13 @@ class NotesController < ApplicationController
     end
 
     def create 
-        note = Note.new(note_params)
-        #need to change whne auth
-        note.user = current_user
-        if note.save
-            redirect_to root_path
+        @note = Note.new(note_params)
+        
+        @note.user = current_user
+        if @note.save
+            redirect_to root_path, notice: "Note created successfully"
         else
-            render :new
+            render 'new'
         end
     end
 
@@ -31,9 +31,10 @@ class NotesController < ApplicationController
     end
 
     def update 
-         #need to change whne auth
         if @note.update(note_params)
             redirect_to root_path, notice: "Note has been updated"
+        else
+            render 'edit'
         end
     end
 

@@ -1,0 +1,15 @@
+<% if errors_msg.errors.any? %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h6><%= pluralize(errors_msg.errors.count, "error") %></h6>
+      <ul>
+        <% errors_msg.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+<% end %>
+
+
