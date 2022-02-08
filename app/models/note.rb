@@ -30,4 +30,7 @@ class Note < ApplicationRecord
 
   scope :published, -> { where(:published => true) }
 
+  validates :title, presence: :true
+  validates :content, presence: :true
+  validates :wing_id, presence: :true
 end
