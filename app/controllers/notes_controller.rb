@@ -1,5 +1,7 @@
 class NotesController < ApplicationController
     before_action :set_note, only: [:edit, :show, :update]
+    before_action :must_log_in, except: [:show, :index]
+    before_action :must_same_user, only: [:edit, :update]
 
     def index
         @notes = Note.all
@@ -15,7 +17,7 @@ class NotesController < ApplicationController
     def create 
         note = Note.new(note_params)
         #need to change whne auth
-        note.user = User.find(1)
+        note.user = current_user
         if note.save
             redirect_to root_path
         else
@@ -29,7 +31,6 @@ class NotesController < ApplicationController
 
     def update 
          #need to change whne auth
-        @note.user = User.find(1)
         if @note.update(note_params)
             redirect_to root_path, notice: "Note has been updated"
         end
@@ -43,6 +44,10 @@ class NotesController < ApplicationController
 
     def note_params 
         params.require(:note).permit(:title, :content, :require_ack, :bump, wing_ids:[])
+    end
+
+    def must_same_user
+        redirect_to root_path, alert: "You are not authorized to perform this action!" unless @note.user == current_user
     end
 
 end

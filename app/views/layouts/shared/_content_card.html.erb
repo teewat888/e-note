@@ -5,8 +5,10 @@
         <% note.comments.each do |comment| %>
             <p id="deleteComment<%= comment.id %>" >
                 <b><i><%= comment.user.username %></i></b> : "<%= comment.content %>"
-                <%= link_to comment_path(comment), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
-                <i class="bi-trash"></i>
+                <% if logged_in? && note.user == current_user %>
+                    <%= link_to comment_path(comment), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
+                    <i class="bi-trash"></i>
+                    <% end %>
                 <% end %>
             </p>
         <% end %>
