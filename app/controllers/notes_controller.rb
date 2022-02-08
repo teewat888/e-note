@@ -2,6 +2,7 @@ class NotesController < ApplicationController
     before_action :set_note, only: [:edit, :show, :update]
     before_action :must_log_in, except: [:show, :index]
     before_action :must_same_user, only: [:edit, :update]
+    before_action :check_cancel, only: [:create, :update]
 
     def index
         @notes = Note.all
@@ -39,7 +40,8 @@ class NotesController < ApplicationController
     private
 
     def set_note 
-        @note = Note.find(params[:id])
+        @note ||= Note.find(params[:id])
+        redirect_to root_path, alert: "No note found!" unless @note
     end
 
     def note_params 
@@ -48,6 +50,10 @@ class NotesController < ApplicationController
 
     def must_same_user
         redirect_to root_path, alert: "You are not authorized to perform this action!" unless @note.user == current_user
+    end
+
+    def check_cancel
+        redirect_to root_path if params[:commit] == 'Cancel'
     end
 
 end

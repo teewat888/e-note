@@ -5,7 +5,7 @@
 
         <p><%= link_to "Create new note", new_note_path %></p>
         
-        <% if current_user_role == "admin" %><!-- admin section -->
+        <% if current_role == "admin" %><!-- admin section -->
         <p><%= link_to "Users Management", admin_users_admin_index_path %></p>
         <% end %>
 
