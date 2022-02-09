@@ -108,3 +108,7 @@ input[type="checkbox"]:checked + label {
 .apple_pagination a:focus {
   text-decoration: underline;
 }
+
+.field-with-errors input {
+  border: 1px solid red;
+}

@@ -1,3 +1,5 @@
 let delete<%= @comment.id %> = document.querySelector("#deleteComment" + <%= @comment.id %>);
 
 delete<%= @comment.id %>.remove();
+
+document.getElementById("h-flash").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Comment removed.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"

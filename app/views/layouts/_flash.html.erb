@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col">
+    <div id="h-flash">&nbsp;</div>
         <% flash.each do |type, msg| %>
             <div class="alert alert-<%= type == "notice" ? "info" : "danger" %> alert-dismissible fade show" role="alert">
                 <%= msg %>
