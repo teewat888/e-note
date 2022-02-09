@@ -1,6 +1,6 @@
 <%= form_with url: setwing_path, class: "form-partial" , local: true do |f| %>
     <div class="form-group"><%= f.label "Current location is : " %> <%= current_wing.name %></div>
     <div class="form-group"><%= f.label "Please select where this computer is located." %></div>
-    <div class="form-group"><%= f.collection_select :wing_ids, Wing.all, :id, :name, {selected_value: cookies[:wing_id]} %></div>
+    <div class="form-group"><%= f.collection_select :wing_ids, Wing.all, :id, :name, selected: current_wing.id %></div>
     <div class="form-group"> <%= f.submit class: "btn btn-outline-dark btn-sm" %>&nbsp;<%= f.submit "Cancel", class: "btn btn-outline-dark btn-sm" %></div>
 <% end %>
