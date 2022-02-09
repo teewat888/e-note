@@ -53,8 +53,4 @@ class NotesController < ApplicationController
         redirect_to root_path, alert: "You are not authorized to perform this action!" unless @note.user == current_user
     end
 
-    def check_cancel
-        redirect_to root_path if params[:commit] == 'Cancel'
-    end
-
 end

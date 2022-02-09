@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?, :current_role
+    helper_method :current_user, :logged_in?, :current_role, :current_wing
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found 
 
     def current_user
@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
         current_user.role.name
     end
 
+    def current_wing
+        @current_wing ||= Wing.find(cookies[:wing_id]) if cookies[:wing_id]
+        @current_wing.nil? ? Wing.find(1) : @current_wing
+    end
+
     def must_be_admin
         redirect_to root_path, alert: "You are not authorized to perform this action" unless current_role == "admin"
     end
@@ -24,6 +29,10 @@ class ApplicationController < ActionController::Base
 
     def handle_record_not_found
         redirect_to root_path, alert: "Error: record not found!"
+    end
+
+    def check_cancel
+        redirect_to root_path if params[:commit] == 'Cancel'
     end
 
 end

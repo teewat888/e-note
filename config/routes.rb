@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
   root 'pages#home'
+
+  get '/settings', to: 'settings#index'
+  post '/setwing', to: 'settings#wing'
+
   resources :users
   resources :notes
 
