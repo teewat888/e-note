@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
     end
 
     def must_same_user
-        redirect_to root_path, alert: "You are not autorized to perform this action" unless @comment.user == current_user
+        redirect_to root_path, alert: "You are not autorized to perform this action" unless (@comment.user == current_user) || (current_role == 'admin')
     end
 
 end

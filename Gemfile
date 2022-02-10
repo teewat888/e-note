@@ -30,6 +30,9 @@ gem 'graphicsmagick', '~> 1.0', '>= 1.0.5'
 #add annotate
 gem 'annotate'
 
+#faker data
+gem 'faker'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

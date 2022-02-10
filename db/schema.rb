@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_120220) do
 
   create_table "notes", force: :cascade do |t|
     t.string "title"
-    t.boolean "require_ack"
+    t.boolean "require_ack", default: false
     t.integer "bump"
     t.text "content"
     t.bigint "user_id"

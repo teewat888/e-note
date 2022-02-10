@@ -6,7 +6,7 @@
 #  bump        :integer
 #  content     :text
 #  published   :boolean          default(TRUE)
-#  require_ack :boolean
+#  require_ack :boolean          default(FALSE)
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
