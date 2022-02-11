@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?, :current_role, :current_wing
+
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found 
 
     def current_user
@@ -31,8 +32,8 @@ class ApplicationController < ActionController::Base
         redirect_to root_path, alert: "Error: record not found!"
     end
 
-    def check_cancel
-        redirect_to root_path if params[:commit] == 'Cancel'
+    def check_cancel(path)
+        redirect_to path if params[:commit] == 'Cancel'
     end
 
 end

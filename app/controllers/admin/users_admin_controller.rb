@@ -2,7 +2,7 @@ class Admin::UsersAdminController < ApplicationController
     before_action :set_user, only: [:edit, :update]
     before_action :must_log_in
     before_action :must_be_admin
-    before_action :check_cancel, only: [:create, :update]
+    before_action(only: [:create, :update]) { check_cancel(admin_users_admin_index_path) }
 
     def index
         @users = User.all
@@ -38,10 +38,6 @@ class Admin::UsersAdminController < ApplicationController
 
     def user_params 
         params.require(:user).permit(:username, :email, :password, :role_id)
-    end
-
-    def check_cancel
-        redirect_to admin_users_admin_index_path if params[:commit] == 'Cancel'
     end
 
 end

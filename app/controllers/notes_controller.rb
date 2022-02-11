@@ -2,7 +2,7 @@ class NotesController < ApplicationController
     before_action :set_note, only: [:edit, :show, :update, :destroy]
     before_action :must_log_in, except: [:show, :index]
     before_action :must_same_user, only: [:edit, :update]
-    before_action :check_cancel, only: [:create, :update]
+    before_action(only: [:create, :update]) { check_cancel(root_path) }
 
     def index
         @notes = Note.all
