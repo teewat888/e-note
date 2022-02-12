@@ -51,7 +51,7 @@ class NotesController < ApplicationController
     end
 
     def note_params 
-        params.require(:note).permit(:title, :content, :require_ack, :bump, wing_ids:[])
+        params.require(:note).permit(:title, :content, :require_ack, :bump, :user_id, wing_ids:[])
     end
 
     def require_owner
