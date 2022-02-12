@@ -8,8 +8,12 @@ class NotesController < ApplicationController
         if params[:user_id]
             @notes = User.find(params[:user_id]).notes.paginate(page: params[:page], per_page: 5)
             render 'pages/home'
+        elsif params[:wing_id]
+            @notes = Wing.find(params[:wing_id]).notes.paginate(page: params[:page], per_page: 5)
+            render 'pages/home'
         else
-            @notes = Note.all
+            @notes = Note.all.paginate(page: params[:page], per_page: 5)
+            render 'pages/home'
         end
     end
 
