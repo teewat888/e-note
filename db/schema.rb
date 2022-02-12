@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_120220) do
+ActiveRecord::Schema.define(version: 2022_02_12_141027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acknowledges", force: :cascade do |t|
+    t.bigint "note_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_acknowledges_on_note_id"
+    t.index ["user_id"], name: "index_acknowledges_on_user_id"
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +116,8 @@ ActiveRecord::Schema.define(version: 2022_02_07_120220) do
     t.integer "display_order"
   end
 
+  add_foreign_key "acknowledges", "notes"
+  add_foreign_key "acknowledges", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "notes"

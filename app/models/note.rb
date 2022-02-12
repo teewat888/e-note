@@ -27,6 +27,8 @@ class Note < ApplicationRecord
   has_many :wings, through: :note_wings
   has_many :comments
   has_many :users, through: :comments
+  has_many :acknowledges
+  has_many :notes, through: :acknowledges
 
   scope :published, -> { where(:published => true) }
 
