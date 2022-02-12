@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
     before_action :set_note, only: [:edit, :show, :update, :destroy]
-    before_action :must_log_in, except: [:show, :index]
-    before_action :must_same_user, only: [:edit, :update]
+    before_action :require_log_in, except: [:show, :index]
+    before_action :require_owner, only: [:edit, :update]
     before_action(only: [:create, :update]) { check_cancel(root_path) }
 
     def index
@@ -49,7 +49,7 @@ class NotesController < ApplicationController
         params.require(:note).permit(:title, :content, :require_ack, :bump, wing_ids:[])
     end
 
-    def must_same_user
+    def require_owner
         redirect_to root_path, alert: "You are not authorized to perform this action!" unless (@note.user == current_user) || (current_role == 'admin')
     end
 

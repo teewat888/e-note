@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
         @current_wing.nil? ? Wing.find(1) : @current_wing
     end
 
-    def must_be_admin
+    def require_admin
         redirect_to root_path, alert: "You are not authorized to perform this action" unless current_role == "admin"
     end
 
-    def must_log_in
+    def require_log_in
         redirect_to root_path, alert: "You must log in to perform this action" if !logged_in?
     end
 

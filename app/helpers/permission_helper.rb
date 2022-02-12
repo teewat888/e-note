@@ -6,4 +6,9 @@ module  PermissionHelper
     def is_manager_or_admin?
         logged_in? && ((current_role == 'admin') || (current_role == 'manager'))
     end
+
+    def is_staff?
+        logged_in? && (current_role == 'staff')
+    end
+
 end
