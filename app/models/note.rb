@@ -28,8 +28,7 @@ class Note < ApplicationRecord
   has_many :comments
   has_many :users, through: :comments
   has_many :acknowledges
-  has_many :notes, through: :acknowledges
-
+  has_many :staff, through: :acknowledges, class_name: "User"
   scope :published, -> { where(:published => true) }
 
   validates :title, presence: true

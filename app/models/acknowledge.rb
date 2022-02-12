@@ -19,4 +19,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Acknowledge < ApplicationRecord
+   belongs_to :user
+   belongs_to :note
 end

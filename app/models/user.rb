@@ -18,9 +18,9 @@ class User < ApplicationRecord
     has_many :notes
     belongs_to :role
     has_many :comments
-    has_many :notes, through: :comments
+    has_many :memos, through: :comments, class_name: "Note"
     has_many :acknowledges
-    has_many :notes, through: :acknowledges
-
+    has_many :topics, through: :acknowledges, class_name: "Note"
+   
     has_secure_password
 end

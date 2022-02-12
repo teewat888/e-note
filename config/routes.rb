@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :notes
   end
 
-  resources :users
+ 
   resources :notes
 
   resources :notes do
