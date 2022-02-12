@@ -5,7 +5,12 @@ class NotesController < ApplicationController
     before_action(only: [:create, :update]) { check_cancel(root_path) }
 
     def index
-        @notes = Note.all
+        if params[:user_id]
+            @notes = User.find(params[:user_id]).notes.paginate(page: params[:page], per_page: 5)
+            render 'pages/home'
+        else
+            @notes = Note.all
+        end
     end
 
     def show

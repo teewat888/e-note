@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-    before_action :check_cancel(root_path), only: [:wing]
+    before_action(only: [:wing]) { check_cancel(root_path) }
 
     def index 
 

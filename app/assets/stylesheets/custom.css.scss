@@ -57,7 +57,11 @@ input[type="checkbox"]:checked + label {
 }
 
 .user-admin-box {
-  margin-top: 10px;
+  background-color: 10px;
+}
+
+.dropdown-divider span {
+  background-color: black;
 }
 
 .footer-basic {

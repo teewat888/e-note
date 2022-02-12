@@ -1,7 +1,7 @@
 class Admin::UsersAdminController < ApplicationController
     before_action :set_user, only: [:edit, :update]
-    before_action :must_log_in
-    before_action :must_be_admin
+    before_action :require_log_in
+    before_action :require_admin
     before_action(only: [:create, :update]) { check_cancel(admin_users_admin_index_path) }
 
     def index

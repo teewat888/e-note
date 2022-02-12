@@ -1,12 +1,24 @@
 <section class="login-clean">
     <% if logged_in? %>
         <p>Hello, <%= current_user.username %></p>
-        <p><%= link_to "Logout", logout_path, method: :post %></p>
+            <%= form_with url: logout_path, method: :post do |f| %>
+                <div class="form-group"><%= f.submit "Log out", class: "btn btn-outline-dark btn-sm" %></div>
+            <% end %>
+        <%= render 'layouts/shared/divider' %>
+            <%= form_with url: new_note_path, method: :get do |f| %>
+                <div class="form-group"><%= f.submit "Create new note", class: "btn btn-outline-dark btn-sm" %></div>
+            <% end %>
 
-        <p><%= link_to "Create new note", new_note_path %></p>
-        
+            <%= form_with url: user_notes_path(current_user.id), method: :get do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id if current_user %>
+                <div class="form-group"><%= f.submit "View my notes", class: "btn btn-outline-dark btn-sm" %></div>
+            <% end %>           
+
         <% if current_role == "admin" %><!-- admin section -->
-        <p><%= link_to "Users Management", admin_users_admin_index_path %></p>
+        <%= render 'layouts/shared/divider' %>
+            <%= form_with url: admin_users_admin_index_path, method: :get do |f| %>
+                <div class="form-group"><%= f.submit "User management", class: "btn btn-outline-dark btn-sm" %></div>
+            <% end %>
         <% end %>
 
     <% else %>

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get '/settings', to: 'settings#index'
   post '/setwing', to: 'settings#wing'
 
+  resources :users do
+    resources :notes
+  end
+
   resources :users
   resources :notes
 
