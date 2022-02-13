@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
 
     def new 
-        @comment = Comment.new(note_id: params[:note_id])
+        @comment = Comment.new
     end
 
     def show
@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        flash.now[:alert] = "Comment deleted."
         @comment = Comment.find(params[:id])
         @comment.destroy
        

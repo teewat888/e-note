@@ -19,6 +19,17 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Acknowledge < ApplicationRecord
-   belongs_to :user
-   belongs_to :note
+    belongs_to :user
+    belongs_to :note
+
+    
+    def self.is_exist?(user_id:, note_id:)
+        Acknowledge.where("user_id = #{user_id} and note_id = #{note_id}").count == 1 ? true : false
+    end
+
+    #return list of user(s) who read a note
+    def self.people_ack(note:)
+        Acknowledge.select(:user_id).where(note_id: note.id).pluck(:user_id)
+    end
+
 end

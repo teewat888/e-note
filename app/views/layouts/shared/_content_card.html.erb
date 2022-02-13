@@ -1,8 +1,20 @@
 <div class="card-body">
     <p><%= note.content %></p>
 
-        <% if is_staff? %>
-            
+        <% if is_staff? && note.require_ack %>
+            <div class="alert alert-info" role="alert">
+            <b>This Note requires acknowledgement.</b>
+            <hr/>
+                <% if is_ack?(user_id: current_user.id, note_id: note.id) %>
+                    You have already acknowledged this note. 
+                <% else %>
+                    <%= form_with model: @acknowledge, url: acknowledges_path, method: :post, local: true do |f| %>
+                    <%= f.hidden_field :note_id, value: note.id if note %>
+                    <%= f.hidden_field :user_id, value: current_user.id if current_user %> 
+                    <div class="form-group"><%= f.submit "Acknowledge", class: "btn btn-outline-dark btn-sm" %></div>
+                    <% end %>
+                <% end %>
+            </div>
         <% end %>
 
     <h6>Comments</h6>
@@ -18,7 +30,7 @@
             </p>
         <% end %>
         <% if logged_in? %>
-            <%= form_with url: comments_path, method: :post, local: true do |f| %>
+            <%= form_with model: @comment, url: comments_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :note_id, value: note.id if note %>
             <%= f.hidden_field :user_id, value: current_user.id if current_user %>
             <div class="form-group"><%= f.text_area :content, class: "form-control", placeholder: "Write comment here" %></div> 

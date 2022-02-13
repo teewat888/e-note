@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root 'pages#home'
+  root 'notes#index'
 
   get '/settings', to: 'settings#index'
   post '/setwing', to: 'settings#wing'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :notes
   end
 
+  resources :acknowledges, only: [:create, :delete]
  
   resources :notes
 
