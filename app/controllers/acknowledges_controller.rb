@@ -1,7 +1,8 @@
 class AcknowledgesController < ApplicationController
+    before_action :require_log_in, :require_manager, only: [:index]
 
-    def new
-
+    def index
+        @notes = Note.notes_require_ack.order('updated_at desc').paginate(page: params[:page], per_page: 5) 
     end
 
     def create

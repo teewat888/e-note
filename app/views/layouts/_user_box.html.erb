@@ -11,7 +11,14 @@
 
             <%= form_with url: user_notes_path(current_user.id), method: :get do |f| %>
                 <div class="form-group"><%= f.submit "View my notes", class: "btn btn-outline-dark btn-sm" %></div>
-            <% end %>           
+            <% end %>    
+
+        <% if current_role == "manager" %> <!-- manager section -->
+        <%= render 'layouts/shared/divider' %>
+            <%= form_with url: acknowledges_path, method: :get do |f| %>
+                <div class="form-group"><%= f.submit "View notes require acknowledge", class: "btn btn-outline-dark btn-sm" %></div>
+            <% end %>    
+        <% end %>       
 
         <% if current_role == "admin" %><!-- admin section -->
         <%= render 'layouts/shared/divider' %>

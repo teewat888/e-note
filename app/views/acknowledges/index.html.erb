@@ -4,16 +4,20 @@
             <div class="card-header" id="heading<%= note.id %>">
                 <h2 class="mb-0">
                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= note.id %>" aria-expanded="true" aria-controls="collapse<%= note.id %>">
-                    <%= note.title %> (by <%= note.user.username %> , <%= note.user.role.name %>) (<%= display_wing(note) %>)   
-                        <% if is_current_user_or_admin?(note) %>
-                            <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil"></i><% end %>
-                        <% end %>
+                    <%= note.title %> 
+                    <span class="badge badge-danger"><%= Acknowledge.people_not_ack(note: note).count %> unacknowledged</span>
+                    <span class="badge badge-success"><%= Acknowledge.people_ack(note: note).count %> ackknowledge</span>
                     </button>
                 </h2>
             </div>
 
             <div id="collapse<%= note.id %>" class="collapse" aria-labelledby="heading<%= note.id %>" data-parent="#accordionDiv">
-                <%= render partial: "layouts/shared/content_card", locals: {note: note} %>
+                <% Acknowledge.people_not_ack(note: note).each do |u| %>
+                    <span class="d-block py-1 pl-5 mx-1 bg-danger text-white"><%= u.username %></span>
+                <% end %>
+                <% Acknowledge.people_ack(note: note).each do |u| %>
+                    <span class="d-block py-1 pl-5 mx-1 bg-success text-white"><%= u.username %></span>
+                <% end %>
             </div>
         </div>
     <% end %>

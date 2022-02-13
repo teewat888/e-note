@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :notes
   end
 
-  resources :acknowledges, only: [:create, :delete]
+  resources :acknowledges, only: [:create, :index]
  
   resources :notes
 

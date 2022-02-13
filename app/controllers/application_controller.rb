@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
         redirect_to root_path, alert: "You are not authorized to perform this action" unless current_role == "admin"
     end
 
+    def require_manager
+        redirect_to root_path, alert: "You are not authorized to perform this action" unless current_role == "manager"
+    end
+
     def require_log_in
         redirect_to root_path, alert: "You must log in to perform this action" if !logged_in?
     end
