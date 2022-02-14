@@ -5,6 +5,14 @@
                 <div class="form-group"><%= f.submit "Log out", class: "btn btn-outline-dark btn-sm" %></div>
             <% end %>
         <%= render 'layouts/shared/divider' %>
+            <% if is_staff? && User.unack_notes_count(user: current_user) > 0 %>
+                <%= form_with url: acknowledges_path, method: :get do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id if current_user %> 
+                <div class="form-group"><%= f.submit "You have #{pluralize(User.unack_notes(user: current_user).count, "unread note")}", class: "btn btn-outline-danger btn-sm" %></div>
+                <% end %>
+                <%= render 'layouts/shared/divider' %>
+            <% end %>
+        
             <%= form_with url: new_note_path, method: :get do |f| %>
                 <div class="form-group"><%= f.submit "Create new note", class: "btn btn-outline-dark btn-sm" %></div>
             <% end %>

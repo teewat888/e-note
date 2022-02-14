@@ -1,7 +1,11 @@
 class AcknowledgesController < ApplicationController
-    before_action :require_log_in, :require_manager, only: [:index]
+    before_action :require_log_in, only: [:index]
 
     def index
+        if (params[:user_id])
+            @notes = User.unack_notes(user: User.find(params[:user_id])).order('updated_at desc').paginate(page: params[:page], per_page: 5) 
+            render 'notes/index'
+        end
         @notes = Note.notes_require_ack.order('updated_at desc').paginate(page: params[:page], per_page: 5) 
     end
 

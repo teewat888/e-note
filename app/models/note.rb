@@ -29,7 +29,10 @@ class Note < ApplicationRecord
     has_many :users, through: :comments
     has_many :acknowledges
     has_many :staff, through: :acknowledges, class_name: "User"
+    
     scope :published, -> { where(:published => true) }
+    scope :require_acknowledge, -> { where(:require_ack => true) }
+    
 
     validates :title, presence: true
     validates :content, presence: true

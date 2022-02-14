@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     def destroy
         @comment = Comment.find(params[:id])
         @comment.destroy
-       
+        #views/comments/destroy.js.erb
         respond_to do |format|
             format.html
             format.js
