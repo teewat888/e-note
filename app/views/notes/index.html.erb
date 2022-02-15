@@ -4,7 +4,12 @@
             <div class="card-header" id="heading<%= note.id %>">
                 <h2 class="mb-0">
                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= note.id %>" aria-expanded="true" aria-controls="collapse<%= note.id %>">
-                    <%= note.title %> (by <%= note.user.username %> , <%= note.user.role.name %>) (<%= display_wing(note) %>)   
+                    <% if params[:query].present? %>
+                        <%= highlight(note.title, params[:query], highlighter: highlight_style) %> (by <%= note.user.username %>
+                    <% else %>
+                        <%= note.title %>
+                    <% end %>
+                        ,<%= note.user.role.name %>) (<%= display_wing(note) %>)   
                         <% if is_current_user_or_admin?(note) %>
                             <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil"></i><% end %>
                         <% end %>

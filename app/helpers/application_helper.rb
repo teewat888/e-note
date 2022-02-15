@@ -8,4 +8,8 @@ module ApplicationHelper
         Acknowledge.is_exist?(user_id: user_id, note_id: note_id)
     end
 
+    def highlight_style
+        '<span style="color:red"><em>\1</em></span>'
+    end
+
 end

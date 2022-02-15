@@ -43,19 +43,19 @@ class Note < ApplicationRecord
     pg_search_scope :note_search,
       against: :title,
       using: {
-          tsearch: {
-            highlight: {
-              StartSel: '<b>',
-              StopSel: '</b>',
-              MaxWords: 123,
-              MinWords: 456,
-              ShortWord: 4,
-              HighlightAll: true,
-              MaxFragments: 3,
-              FragmentDelimiter: '&hellip;'
-            }
-          }
-        },
+                    tsearch: {
+                      highlight: {
+                        StartSel: '<b>',
+                        StopSel: '</b>',
+                        MaxWords: 123,
+                        MinWords: 456,
+                        ShortWord: 4,
+                        HighlightAll: true,
+                        MaxFragments: 3,
+                        FragmentDelimiter: '&hellip;'
+                      }
+                    }
+                  },
       associated_against: {
       rich_text_content: [:body]
     }

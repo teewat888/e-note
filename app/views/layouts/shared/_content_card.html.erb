@@ -1,5 +1,10 @@
 <div class="card-body">
-    <p><%= note.content %></p>
+    <p><% if params[:query].present? %>
+                        <%= highlight(note.content.to_plain_text, params[:query], highlighter: highlight_style) %> 
+                    <% else %>
+                        <%= note.content %>
+                    <% end %>
+    </p>
 
         <% if is_staff? && note.require_ack %>
             <div class="alert alert-info" role="alert">
