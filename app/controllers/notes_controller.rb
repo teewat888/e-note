@@ -48,6 +48,15 @@ class NotesController < ApplicationController
         end
     end
 
+    def search
+        if params[:query].present?
+            @notes = Note.note_search(params[:query]).order('updated_at desc').paginate(page: params[:page], per_page: 5)
+        else
+            @notes = Note.none
+        end
+        render 'index'
+    end
+
     private
 
     def set_note 

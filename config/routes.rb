@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   resources :acknowledges, only: [:create, :index]
  
+
+
+  get '/notes/search', to: 'notes#search', as: 'notes_search'
+
   resources :notes
 
   resources :notes do

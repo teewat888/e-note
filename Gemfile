@@ -33,6 +33,9 @@ gem 'annotate'
 #faker data
 gem 'faker'
 
+#postgres search
+gem 'pg_search'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

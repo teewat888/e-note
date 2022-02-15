@@ -25,7 +25,7 @@ class User < ApplicationRecord
     has_secure_password
     #find unack notes 
     def self.unack_notes(user:)
-        all_ack_notes = Note.notes_require_ack.pluck(:id)
+        all_ack_notes = Note.require_acknowledge.pluck(:id)
         notes_user_ack = Acknowledge.select(:note_id).where(user_id: user.id).pluck(:note_id)
         Note.where(id: (all_ack_notes - notes_user_ack))
     end

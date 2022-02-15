@@ -21,6 +21,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Note < ApplicationRecord
+    include PgSearch::Model
+
     has_rich_text :content
     belongs_to :user
     has_many :note_wings
@@ -32,13 +34,30 @@ class Note < ApplicationRecord
     
     scope :published, -> { where(:published => true) }
     scope :require_acknowledge, -> { where(:require_ack => true) }
-    
 
     validates :title, presence: true
     validates :content, presence: true
 
-    def self.notes_require_ack
-      Note.where(require_ack: true)
-    end
-  
+    
+
+    pg_search_scope :note_search,
+      against: :title,
+      using: {
+          tsearch: {
+            highlight: {
+              StartSel: '<b>',
+              StopSel: '</b>',
+              MaxWords: 123,
+              MinWords: 456,
+              ShortWord: 4,
+              HighlightAll: true,
+              MaxFragments: 3,
+              FragmentDelimiter: '&hellip;'
+            }
+          }
+        },
+      associated_against: {
+      rich_text_content: [:body]
+    }
+
 end

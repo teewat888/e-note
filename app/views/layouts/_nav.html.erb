@@ -12,7 +12,14 @@
                         <%= link_to "Myrtle", wing_notes_path(6), class: "dropdown-item" %>
                         </div>
                     </li>
-                 <li class="nav-item"><a class="nav-link" href="#">Search Notes</a></li>
+                 <li class="nav-item">
+                    <%= form_with url: notes_search_path, method: :get do |f| %>
+                        <div class="input-group"> <%= f.text_field :query, class: "form-control" %>
+                            <div class="input-group-append"><button class="btn btn-info"><i class="bi bi-search"></i></button></div>
+                        </div>
+                    <% end %>
+
+                </li>
                 <li class="nav-item"><%= link_to settings_path do %>
                     <i class="bi-gear" style="font-size: 1.5rem; color: black; padding-left: 5px;"></i>
                 <% end %>
