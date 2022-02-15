@@ -11,7 +11,8 @@
                     <% end %>
                         ,<%= note.user.role.name %>) (<%= display_wing(note) %>)   
                         <% if is_current_user_or_admin?(note) %>
-                            <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil"></i><% end %>
+                            <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil-square"></i><% end %>
+                            <%= link_to note_bump_path(note) do %><i class="bi-arrow-up-square"></i><% end %>
                         <% end %>
                     </button>
                 </h2>

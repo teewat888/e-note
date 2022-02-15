@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :acknowledges, only: [:create, :index]
  
-
+  get 'note/bump/:id', to: 'notes#bump', as: 'note_bump'
 
   get '/notes/search', to: 'notes#search', as: 'notes_search'
 

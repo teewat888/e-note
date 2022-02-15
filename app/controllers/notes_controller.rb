@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-    before_action :set_note, only: [:edit, :show, :update, :destroy]
+    before_action :set_note, only: [:edit, :show, :update, :destroy, :bump]
     before_action :require_log_in, except: [:show, :index]
     before_action :require_owner, only: [:edit, :update]
     before_action(only: [:create, :update]) { check_cancel(root_path) }
@@ -45,6 +45,15 @@ class NotesController < ApplicationController
             redirect_to root_path, notice: "Note has been updated"
         else
             render 'edit'
+        end
+    end
+
+    def bump
+        bump = @note.bump
+        if @note.update(bump: bump += 1)
+            redirect_to root_path, notice: "Note moved to the top!"
+        else
+            redirect_to root_path, alert: "Failed to move note to the top!"
         end
     end
 
