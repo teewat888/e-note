@@ -1,1 +1,2 @@
+<%= render partial: "layouts/shared/errors_msg", object: @user %>
 <%= render partial: "form", locals: {user: @user, method: :post, url: admin_users_admin_index_path} %>

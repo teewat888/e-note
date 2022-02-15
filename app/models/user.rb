@@ -22,6 +22,8 @@ class User < ApplicationRecord
     has_many :acknowledges
     has_many :topics, through: :acknowledges, class_name: "Note"
    
+    validates :username, presence: true
+
     has_secure_password
     #find unack notes 
     def self.unack_notes(user:)
