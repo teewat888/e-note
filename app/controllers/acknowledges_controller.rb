@@ -6,7 +6,7 @@ class AcknowledgesController < ApplicationController
             @notes = User.unack_notes(user: User.find(params[:user_id])).order('updated_at desc').paginate(page: params[:page], per_page: 5) 
             render 'notes/index'
         end
-        @notes = Note.notes_require_ack.order('updated_at desc').paginate(page: params[:page], per_page: 5) 
+        @notes = Note.require_acknowledge.order('updated_at desc').paginate(page: params[:page], per_page: 5) 
     end
 
     def create

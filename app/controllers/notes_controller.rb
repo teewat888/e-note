@@ -8,9 +8,9 @@ class NotesController < ApplicationController
         if params[:user_id]
             @notes = User.find(params[:user_id]).notes.order('updated_at desc').paginate(page: params[:page], per_page: 5)
         elsif params[:wing_id]
-            @notes = Wing.find(params[:wing_id]).notes.order('updated_at desc').paginate(page: params[:page], per_page: 5)
+            @notes = Wing.find(params[:wing_id]).notes.published.order('updated_at desc').paginate(page: params[:page], per_page: 5)
         else
-            # filter wing note and hard code main of id 1 = all wings
+            # filter based on cookies setting
             @notes = Note.published.joins(:wings)
             .where("wings.id = #{current_wing.id} or wings.id = 1")
             .order('updated_at desc')
@@ -50,7 +50,7 @@ class NotesController < ApplicationController
 
     def search
         if params[:query].present?
-            @notes = Note.note_search(params[:query]).order('updated_at desc').paginate(page: params[:page], per_page: 5)
+            @notes = Note.note_search(params[:query]).published.order('updated_at desc').paginate(page: params[:page], per_page: 5)
         else
             @notes = Note.none
         end
@@ -65,7 +65,7 @@ class NotesController < ApplicationController
     end
 
     def note_params 
-        params.require(:note).permit(:title, :content, :require_ack, :bump, :user_id, wing_ids:[])
+        params.require(:note).permit(:title, :content, :require_ack, :bump, :user_id, :published, wing_ids:[])
     end
 
     def require_owner

@@ -33,7 +33,7 @@ class Note < ApplicationRecord
     has_many :staff, through: :acknowledges, class_name: "User"
     
     scope :published, -> { where(:published => true) }
-    scope :require_acknowledge, -> { where(:require_ack => true) }
+    scope :require_acknowledge, -> { where(:require_ack => true).where(:published => true) }
 
     validates :title, presence: true
     validates :content, presence: true
