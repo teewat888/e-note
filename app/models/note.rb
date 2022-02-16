@@ -34,11 +34,10 @@ class Note < ApplicationRecord
     
     scope :published, -> { where(:published => true) }
     scope :require_acknowledge, -> { where(:require_ack => true).where(:published => true) }
+    default_scope { order(updated_at: :desc) }
 
     validates :title, presence: true
     validates :content, presence: true
-
-    
 
     pg_search_scope :note_search,
       against: :title,

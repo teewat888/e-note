@@ -6,9 +6,9 @@ class NotesController < ApplicationController
 
     def index
         if params[:user_id]
-            @notes = User.find(params[:user_id]).notes.order('updated_at desc').paginate(page: params[:page], per_page: 5)
+            @notes = User.find(params[:user_id]).notes.paginate(page: params[:page], per_page: 5)
         elsif params[:wing_id]
-            @notes = Wing.find(params[:wing_id]).notes.published.order('updated_at desc').paginate(page: params[:page], per_page: 5)
+            @notes = Wing.find(params[:wing_id]).notes.published.paginate(page: params[:page], per_page: 5)
         else
             # filter based on cookies setting
             @notes = Note.published.joins(:wings)
@@ -59,7 +59,7 @@ class NotesController < ApplicationController
 
     def search
         if params[:query].present?
-            @notes = Note.note_search(params[:query]).published.order('updated_at desc').paginate(page: params[:page], per_page: 5)
+            @notes = Note.note_search(params[:query]).published.paginate(page: params[:page], per_page: 5)
         else
             @notes = Note.none
         end

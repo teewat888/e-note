@@ -24,7 +24,7 @@
         <% if current_role == "manager" %> <!-- manager section -->
         <%= render 'layouts/shared/divider' %>
             <%= form_with url: acknowledges_path, method: :get do |f| %>
-                <div class="form-group"><%= f.submit "View notes require acknowledge", class: "btn btn-outline-dark btn-sm" %></div>
+                <div class="form-group"><%= f.submit "View required acknowledge notes", class: "btn btn-outline-dark btn-sm" %></div>
             <% end %>    
         <% end %>       
 
