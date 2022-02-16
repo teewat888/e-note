@@ -24,7 +24,9 @@
         </div>
     <% end %>
 </div>
-
+<% if @notes.count == 0 %>
+    No result.
+<% end %>
 <div class="apple_pagination">
   <%= will_paginate @notes, :container => false %>
 </div>

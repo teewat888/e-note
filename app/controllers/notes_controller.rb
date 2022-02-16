@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
     before_action :set_note, only: [:edit, :show, :update, :destroy, :bump]
-    before_action :require_log_in, except: [:show, :index]
-    before_action :require_owner, only: [:edit, :update]
+    before_action :require_log_in, except: [:show, :index, :bump]
+    before_action :require_owner, only: [:edit, :update, :bump]
     before_action(only: [:create, :update]) { check_cancel(root_path) }
 
     def index

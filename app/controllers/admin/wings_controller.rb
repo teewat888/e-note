@@ -1,5 +1,7 @@
 class Admin::WingsController < ApplicationController
     before_action :set_wing, only: [:show, :edit, :update]
+    before_action :require_log_in
+    before_action :require_admin
 
     def index
         @wings = Wing.all.order(:display_order)
