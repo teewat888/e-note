@@ -17,6 +17,11 @@ wings.each_with_index do |wing, index|
     Wing.create(name: wing, display_order: index+1)
 end
 
+tags = ['Important', 'New resident', 'Stock need', 'Special request', 'Announcement']
+tags.each do |tag| 
+    Tag.create(name: tag)
+end
+
 roles = ['admin', 'manager', 'staff']
 roles.each { |role| Role.create(name: role)}
 admin = User.create(username: 'admin', password: '1111', role_id: 1)
