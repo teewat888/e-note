@@ -31,7 +31,10 @@
         <% if current_role == "admin" %><!-- admin section -->
         <%= render 'layouts/shared/divider' %>
             <%= form_with url: admin_users_admin_index_path, method: :get do |f| %>
-                <div class="form-group"><%= f.submit "User management", class: "btn btn-outline-dark btn-sm" %></div>
+                <div class="form-group"><%= f.submit "Users management", class: "btn btn-outline-dark btn-sm" %></div>
+            <% end %>
+            <%= form_with url: admin_tags_path, method: :get do |f| %>
+                <div class="form-group"><%= f.submit "Tags management", class: "btn btn-outline-dark btn-sm" %></div>
             <% end %>
         <% end %>
 

@@ -31,6 +31,8 @@ class Note < ApplicationRecord
     has_many :users, through: :comments
     has_many :acknowledges
     has_many :staff, through: :acknowledges, class_name: "User"
+    has_many :note_tags
+    has_many :tags, through: :note_tags
     
     scope :published, -> { where(:published => true) }
     scope :require_acknowledge, -> { where(:require_ack => true).where(:published => true) }

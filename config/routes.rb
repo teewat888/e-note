@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :wings
     resources :users_admin
+    resources :tags
   end
 
   get '/login', to: 'sessions#new'
