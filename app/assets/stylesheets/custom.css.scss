@@ -35,6 +35,9 @@ body {
 input[id^="note_wing_ids"] {
   display: none;
 }
+input[id^="note_tag_ids"] {
+  display: none;
+}
 
 input[type="checkbox"] + label {
   display: inline-block;

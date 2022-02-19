@@ -1,0 +1,4 @@
+<%= form_with model: tag, url: url ,method: method, class: "form-partial" , local: true do |f| %>
+    <div class="form-group"><%= f.text_field :name, class: "form-control", placeholder: "tag name" %></div>    
+    <div class="form-group"><%= f.submit class: "btn btn-outline-dark btn-sm" %>&nbsp;<%= f.submit "Cancel", class: "btn btn-outline-dark btn-sm" %></div>
+<% end %>

@@ -5,11 +5,14 @@
                 <h2 class="mb-0">
                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= note.id %>" aria-expanded="true" aria-controls="collapse<%= note.id %>">
                     <% if params[:query].present? %>
-                        <%= highlight(note.title, params[:query], highlighter: highlight_style) %> (by <%= note.user.username %>
+                        <%= highlight(note.title, params[:query], highlighter: highlight_style) %> 
                     <% else %>
                         <%= note.title %>
                     <% end %>
-                        ,<%= note.user.role.name %>) (<%= display_wing(note) %>)   
+                        (by <%= note.user.username %>,<%= note.user.role.name %>) (<%= display_wing(note) %>) 
+                        <% note.tags.each do |tag| %>
+                            <span class="badge badge-info"><%= tag.name %></span>
+                        <% end %>  
                         <% if is_current_user_or_admin?(note) %>
                             <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil-square"></i><% end %>
                             <%= link_to note_bump_path(note) do %><i class="bi-arrow-up-square"></i><% end %>

@@ -1,6 +1,7 @@
 <%= form_with model: note, class: "form-partial" , local: true do |f| %>
 
     <div class="form-group"><%= f.text_field :title, class: "form-control", placeholder: "Title" %></div>
+    <div class="form-group mt-4"><%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %></div>
     <div class="form-group"><%= f.rich_text_area :content, rows: 100 , class: "form-control", placeholder: "Type your content here" %></div>
     <div class="form-group mt-4"><%= f.collection_check_boxes :wing_ids, Wing.all, :id, :name, checked: current_wing.id %></div>
      <div class="custom-control custom-switch">

@@ -9,6 +9,8 @@ class NotesController < ApplicationController
             @notes = User.find(params[:user_id]).notes.paginate(page: params[:page], per_page: 5)
         elsif params[:wing_id]
             @notes = Wing.find(params[:wing_id]).notes.published.paginate(page: params[:page], per_page: 5)
+        elsif params[:tag_id]
+            @notes = Tag.find(params[:tag_id]).notes.published.paginate(page: params[:page], per_page: 5)
         else
             # filter based on cookies setting
             @notes = Note.published.joins(:wings)
@@ -74,7 +76,7 @@ class NotesController < ApplicationController
     end
 
     def note_params 
-        params.require(:note).permit(:title, :content, :require_ack, :bump, :user_id, :published, wing_ids:[])
+        params.require(:note).permit(:title, :content, :require_ack, :bump, :user_id, :published, wing_ids:[], tag_ids:[])
     end
 
     def require_owner

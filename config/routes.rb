@@ -1,15 +1,29 @@
 Rails.application.routes.draw do
   
   root 'notes#index'
-
+  #setting cookies for computer location
   get '/settings', to: 'settings#index'
   post '/setwing', to: 'settings#wing'
 
-  resources :users do
+  resources :users, only: [:show] do
+    resources :notes, only: [:show, :index, :new, :create, :update, :edit]
+  end
+
+  namespace :admin do
+    resources :wings
+    resources :users_admin
+    resources :tags
+  end
+
+  get 'wings', to: 'admin/wings#index'
+
+  resources :wings do
     resources :notes
   end
 
-  resources :wings do
+  get 'tags', to: 'admin/tags#index'
+
+  resources :tags do
     resources :notes
   end
 
@@ -27,11 +41,7 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  namespace :admin do
-    resources :wings
-    resources :users_admin
-    resources :tags
-  end
+  
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

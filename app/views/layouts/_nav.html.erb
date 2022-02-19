@@ -3,16 +3,21 @@
         <div id="navcol-1" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><%= link_to "All Notes", notes_path, class: "nav-link" %></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">View notes by wing</a>
-                        <div class="dropdown-menu">
-                        <%= link_to "Willows", wing_notes_path(2), class: "dropdown-item" %>
-                        <%= link_to "Oaks", wing_notes_path(3), class: "dropdown-item" %>
-                        <%= link_to "Juniper", wing_notes_path(4), class: "dropdown-item" %>
-                        <%= link_to "Acacia", wing_notes_path(5), class: "dropdown-item" %>
-                        <%= link_to "Myrtle", wing_notes_path(6), class: "dropdown-item" %>
-                        </div>
-                    </li>
-                 <li class="nav-item">
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">View by wing</a>
+                    <div class="dropdown-menu">
+                    <% wings = Wing.all %>
+                    <% wings.each do |wing| %>
+                        <%= link_to wing.name, wing_notes_path(wing.id), class: "dropdown-item" %>
+                    <% end %>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">View by tag</a>
+                    <div class="dropdown-menu">
+                    <% tags = Tag.all %>
+                    <% tags.each do |tag| %>
+                        <%= link_to tag.name, root_path(tag_id: tag.id), class: "dropdown-item" %>
+                    <% end %>
+                </li>
+                <li class="nav-item">
                     <%= form_with url: notes_search_path, method: :get do |f| %>
                         <div class="input-group"> <%= f.text_field :query, class: "form-control" %>
                             <div class="input-group-append"><button class="btn btn-info"><i class="bi bi-search"></i></button></div>

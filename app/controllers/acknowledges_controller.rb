@@ -1,6 +1,7 @@
 class AcknowledgesController < ApplicationController
-    before_action :require_log_in, only: [:index]
-
+    before_action :require_log_in, only: [:index, :create]
+    before_action :require_manager, only: [:index, :create]
+    
     def index
         if (params[:user_id])
             @notes = User.unack_notes(user: User.find(params[:user_id])).order('updated_at desc').paginate(page: params[:page], per_page: 5) 
