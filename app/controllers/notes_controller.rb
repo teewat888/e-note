@@ -14,8 +14,7 @@ class NotesController < ApplicationController
         else
             # filter based on cookies setting
             @notes = Note.published.joins(:wings)
-            .where("wings.id = #{current_wing.id} or wings.id = 1")
-            .order('updated_at desc')
+            .where("wings.id = #{current_wing.id}")
             .paginate(page: params[:page], per_page: 5)
         end
     end
