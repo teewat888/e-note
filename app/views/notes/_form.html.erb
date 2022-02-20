@@ -1,19 +1,27 @@
-<%= form_with model: note, class: "form-partial" , local: true do |f| %>
-
-    <div class="form-group"><%= f.text_field :title, class: "form-control", placeholder: "Title" %></div>
-    <div class="form-group mt-4"><%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %></div>
-    <div class="form-group"><%= f.rich_text_area :content, rows: 100 , class: "form-control", placeholder: "Type your content here" %></div>
-    <div class="form-group mt-4"><%= f.collection_check_boxes :wing_ids, Wing.all, :id, :name, checked: current_wing.id %></div>
-     <div class="custom-control custom-switch">
-            <%= f.check_box :published, class: "custom-control-input", id: "customSwitch0" %>
-            <%= f.label :published, "Publish", class: "custom-control-label", for: "customSwitch0" %>
+<%= form_with model: note, class: "form-partial", local: true do |f| %>
+    <div data-controller="tag" data-tag-name-value="">
+        <div class="form-group">
+        <input class="form-control" placeholder="Title" type="text" name="note[title]" id="note_title" data-tag-target="output" >
+        </div>
+        <div class="form-group mt-4">
+            <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+                <%= b.check_box %>
+                <%= b.label("data-action": "click->tag#toTitle","data-tag-target": "name" , "data-tag-id-param": "#{b.object.name}" ) %>
+            <% end %>
+        </div>
+        <div class="form-group"><%= f.rich_text_area :content, rows: 100 , class: "form-control", placeholder: "Type your content here" %></div>
+        <div class="form-group mt-4"><%= f.collection_check_boxes :wing_ids, Wing.all, :id, :name, checked: current_wing.id %></div>
+        <div class="custom-control custom-switch">
+                <%= f.check_box :published, class: "custom-control-input", id: "customSwitch0" %>
+                <%= f.label :published, "Publish", class: "custom-control-label", for: "customSwitch0" %>
+        </div>
+            <% if is_manager_or_admin? %>
+                <div class="custom-control custom-switch mt-3">
+                <%= f.check_box :require_ack, class: "custom-control-input", id: "customSwitch1" %>
+                <%= f.label :require_ack, "Require Acknowledge", class: "custom-control-label", for: "customSwitch1" %>
+                </div>
+            <% end %>
     </div>
-        <% if is_manager_or_admin? %>
-            <div class="custom-control custom-switch mt-3">
-            <%= f.check_box :require_ack, class: "custom-control-input", id: "customSwitch1" %>
-            <%= f.label :require_ack, "Require Acknowledge", class: "custom-control-label", for: "customSwitch1" %>
-            </div>
-        <% end %>
     <div class="form-group mt-3"> <%= f.submit class: "btn btn-outline-dark btn-sm" %>&nbsp;<%= f.submit "Cancel", class: "btn btn-outline-dark btn-sm" %></div>
     
 <% end %>
