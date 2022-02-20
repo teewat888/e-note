@@ -16,3 +16,5 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 require("trix");
 require("@rails/actiontext");
+
+import "controllers"
