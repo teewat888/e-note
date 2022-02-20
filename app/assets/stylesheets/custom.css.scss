@@ -39,6 +39,10 @@ input[id^="note_tag_ids"] {
   display: none;
 }
 
+input[id="note_all"] {
+  display: none;
+}
+
 input[type="checkbox"] + label {
   display: inline-block;
   line-height: 2.2em;
