@@ -35,11 +35,7 @@ Rails.application.routes.draw do
 
   resources :notes
 
-  resources :notes do
-    resources :comments
-  end
-
-  resources :comments
+  resources :comments, only: [:create, :destroy]
 
   
 

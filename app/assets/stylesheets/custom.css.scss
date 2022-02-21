@@ -32,6 +32,12 @@ body {
   background-color: rgb(248, 238, 223);
 }
 
+.thin-text {
+  color: #a0a2a3;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
 input[id^="note_wing_ids"] {
   display: none;
 }

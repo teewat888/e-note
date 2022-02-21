@@ -9,10 +9,8 @@
                     <% else %>
                         <%= note.title %>
                     <% end %>
-                        (by <%= note.user.username %>,<%= note.user.role.name %>) (<%= display_wing(note) %>) 
-                        <% note.tags.each do |tag| %>
-                            <span class="badge badge-info"><%= tag.name %></span>
-                        <% end %>  
+                        (<%= display_wing(note) %>) 
+                        <%= display_tag(note) %>
                         <% if is_current_user_or_admin?(note) %>
                             <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil-square"></i><% end %>
                             <%= link_to note_bump_path(note) do %><i class="bi-arrow-up-square"></i><% end %>
@@ -27,7 +25,7 @@
         </div>
     <% end %>
 </div>
-<% if @notes.count == 0 %>
+<% if @notes.length == 0 %>
     No result.
 <% end %>
 <div class="apple_pagination">
