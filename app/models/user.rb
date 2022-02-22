@@ -23,6 +23,7 @@ class User < ApplicationRecord
     has_many :topics, through: :acknowledges, class_name: "Note"
    
     validates :username, presence: true
+    validates :username, uniqueness: { case_sensitive: false }
 
     has_secure_password
     #find unack notes 

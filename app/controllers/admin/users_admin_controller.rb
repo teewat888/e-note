@@ -17,8 +17,9 @@ class Admin::UsersAdminController < ApplicationController
         if @user.valid?
             @user.save
             redirect_to admin_users_admin_index_path, notice: "New user has been created."
-        end
+        else
         render :new
+        end
     end
 
     def edit
@@ -28,8 +29,9 @@ class Admin::UsersAdminController < ApplicationController
     def update
         if @user.update(user_params)
             redirect_to admin_users_admin_index_path, notice: "User has been updated."
-        end
+        else
         render :edit
+        end
     end
 
     private
