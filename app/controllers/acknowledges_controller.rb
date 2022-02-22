@@ -1,6 +1,6 @@
 class AcknowledgesController < ApplicationController
     before_action :require_log_in, only: [:index, :create]
-    before_action :require_manager, only: [:index, :create]
+    #before_action :require_manager, only: [:create]
     
     def index
         if (params[:user_id])
