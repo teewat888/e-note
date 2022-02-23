@@ -51,6 +51,7 @@ class NotesController < ApplicationController
 
     def bump
         bump = @note.bump
+        bump = 0 if bump.nil?
         if @note.update(bump: bump += 1)
             redirect_to root_path, notice: "Note moved to the top!"
         else
