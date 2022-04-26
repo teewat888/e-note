@@ -15,7 +15,7 @@ set :branch, 'main'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
-
+set :linked_files, %w{config/master.key}
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
