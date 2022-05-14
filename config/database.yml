@@ -39,3 +39,6 @@ test:
   pool: 5
   username: railsapp
   password: railsapp123
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
