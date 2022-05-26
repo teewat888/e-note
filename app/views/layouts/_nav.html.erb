@@ -20,14 +20,17 @@
                 <li class="nav-item">
                     <%= form_with url: notes_search_path, method: :get do |f| %>
                         <div class="input-group"> <%= f.text_field :query, class: "form-control" %>
-                            <div class="input-group-append"><button class="btn btn-info"><i class="bi bi-search"></i></button></div>
+                            <div class="input-group-append"><button class="btn btn-info">
+                            <!-- i class="bi bi-search"></!-->
+                            <%= bootstrap_icon "search", width: 50, height: 50, fill: "black" %>
+                            </button></div>
                         </div>
                     <% end %>
 
                 </li>
                 <li class="nav-item"><%= link_to settings_path do %>
-                    <i class="bi-gear" style="font-size: 1.5rem; color: black; padding-left: 5px;"></i>
-                    <%= bootstrap_icon "gear", width: 5, height: 5, fill: "blue" %>
+                    <!-- i class="bi-gear" style="font-size: 1.5rem; color: black; padding-left: 5px;"></!-->
+                    <%= bootstrap_icon "gear", width: 50, height: 50, fill: "black" %>
                 <% end %>
                 </li>
                 
