@@ -30,7 +30,8 @@
                 <b><i><%= comment.user.username %></i></b> : "<%= comment.content %>"
                 <% if is_current_user_or_admin?(comment) %>
                     <%= link_to comment_path(comment), method: :delete, remote: true, data: { confirm: "Are you sure?" } do %>
-                    <i class="bi-trash"></i>
+                    <!-- i class="bi-trash"></!-->
+                    <%= bootstrap_icon "trash", width: 20, height: 20, fill: "lightblue" %>
                     <% end %>
                 <% end %>
             </p>

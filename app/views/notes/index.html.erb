@@ -12,8 +12,14 @@
                         (<%= display_wing(note) %>) 
                         <%= display_tag(note) %>
                         <% if is_current_user_or_admin?(note) %>
-                            <%= link_to edit_user_note_path(current_user.id, note) do %><i class="bi-pencil-square"></i><% end %>
-                            <%= link_to note_bump_path(note) do %><i class="bi-arrow-up-square"></i><% end %>
+                            <%= link_to edit_user_note_path(current_user.id, note) do %>
+                            <!-- i class="bi-pencil-square"></!-->
+                            <%= bootstrap_icon "pencil-square", width: 20, height: 20, fill: "lightblue" %>
+                            <% end %>
+                            <%= link_to note_bump_path(note) do %>
+                            <!-- i class="bi-arrow-up-square"></!-->
+                            <%= bootstrap_icon "arrow-up-square", width: 20, height: 20, fill: "lightblue" %>
+                            <% end %>
                         <% end %>
                     </button>
                 </h2>
